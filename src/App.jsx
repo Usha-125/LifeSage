@@ -3,10 +3,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-// Import Pages
+
+// Pages
 import HomePage from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+
+// Components
+import ProtectedRoute from './components/ProtectedRoute';
+import LogoutButton from './components/LogoutButton';
 
 function App() {
   return (
@@ -20,6 +26,8 @@ function App() {
               <li><Link to="/" className="hover:text-teal-500">Home</Link></li>
               <li><Link to="/dashboard" className="hover:text-teal-500">Dashboard</Link></li>
               <li><Link to="/login" className="hover:text-teal-500">Login</Link></li>
+              <li><Link to="/signup" className="hover:text-teal-500">Sign Up</Link></li>
+              <li><LogoutButton /></li>
             </ul>
           </nav>
         </header>
@@ -28,8 +36,16 @@ function App() {
         <main className="container mx-auto py-6">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
           </Routes>
         </main>
 

@@ -1,19 +1,19 @@
-// src/pages/LoginPage.jsx
+// src/pages/SignupPage.jsx
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth, signInWithEmailAndPassword } from '../services/firebase';
+import { auth, createUserWithEmailAndPassword } from '../services/firebase';
 
-const LoginPage = () => {
+const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       navigate('/dashboard');
     } catch (err) {
       setError(err.message);
@@ -22,9 +22,9 @@ const LoginPage = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
+      <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSignup}>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
           <input
@@ -53,16 +53,16 @@ const LoginPage = () => {
           type="submit"
           className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2 rounded-md"
         >
-          Login
+          Sign Up
         </button>
       </form>
 
       <p className="mt-4 text-center">
-        Don't have an account?{' '}
-        <a href="/signup" className="text-teal-500 hover:underline">Sign up</a>
+        Already have an account?{' '}
+        <a href="/login" className="text-teal-500 hover:underline">Log in</a>
       </p>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignupPage;
