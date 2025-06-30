@@ -3,7 +3,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
-
 // Pages
 import HomePage from './pages/HomePage';
 import DashboardPage from './pages/DashboardPage';
@@ -20,20 +19,20 @@ function App() {
       <div className="min-h-screen bg-gray-50 text-gray-800">
         {/* Header */}
         <header className="bg-white shadow-md p-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-teal-600">🧘‍♀️ LifeSage</h1>
+          <h1 className="text-2xl font-bold text-emerald-600">🧘‍♀️ LifeSage</h1>
           <nav>
-            <ul className="flex gap-4">
-              <li><Link to="/" className="hover:text-teal-500">Home</Link></li>
-              <li><Link to="/dashboard" className="hover:text-teal-500">Dashboard</Link></li>
-              <li><Link to="/login" className="hover:text-teal-500">Login</Link></li>
-              <li><Link to="/signup" className="hover:text-teal-500">Sign Up</Link></li>
+            <ul className="flex gap-6">
+              <li><Link to="/" className="hover:text-orange-500 transition">Home</Link></li>
+              <li><Link to="/dashboard" className="hover:text-orange-500 transition">Dashboard</Link></li>
+              <li><Link to="/login" className="hover:text-orange-500 transition">Login</Link></li>
+              <li><Link to="/signup" className="hover:text-orange-500 transition">Sign Up</Link></li>
               <li><LogoutButton /></li>
             </ul>
           </nav>
         </header>
 
         {/* Main Content */}
-        <main className="container mx-auto py-6">
+        <main className="container mx-auto py-8 px-4">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route
